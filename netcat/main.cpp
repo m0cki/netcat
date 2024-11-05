@@ -1,3 +1,5 @@
+//g++ -std=c++17 -O3 main.cpp -lb15fdrv
+
 #include<iostream>
 #include<b15f/b15f.h>
 #include<array>
@@ -25,12 +27,12 @@ uint16_t calculate_checksum(const std::vector<uint8_t>& data) {
 int main(){
 
     B15F& drv = B15F::getInstance();
-    drv.setRegister(&DDRA,0x01);
+    drv.setRegister(&DDRA,0x0f);
 
     while(1){
         std::cout << "Schreibe 0" << std::endl;
         drv.setRegister(&PORTA, 0);    
-        std::cout << "Schreibe 0" << std::endl;
+        std::cout << "Schreibe 1" << std::endl;
         drv.setRegister(&PORTA, 1);
     }
 }

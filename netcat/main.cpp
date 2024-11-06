@@ -36,3 +36,6 @@ int main(){
         drv.setRegister(&PORTA, 1);
     }
 }
+
+//TODO - Clock
+//Clock Sender gibt abwechslend 0 und 1 an Leitung vor - Arduino liest an einer Clockleitung mit doppeler Geschw. 

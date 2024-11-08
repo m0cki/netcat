@@ -24,18 +24,28 @@ uint16_t calculate_checksum(const std::vector<uint8_t>& data) {
     return checksum;
 }
 
+void delay_ms(uint16_t ms){
+    std::this_thread::sleep_for(std::chrono::milliseconds(ms));
+}
+
 int main(){
 
     B15F& drv = B15F::getInstance();
     drv.setRegister(&DDRA,0x0f);
 
     while(1){
-        std::cout << "Schreibe 0" << std::endl;
-        drv.setRegister(&PORTA, 0);    
-        std::cout << "Schreibe 1" << std::endl;
-        drv.setRegister(&PORTA, 1);
+        std::cout << "Schreibe Zahl 1" << std::endl;
+        drv.setRegister(&PORTA, 15);   
+        drv.delay_ms(100);
+        std::cout << "Schreibe Zahl 2" << std::endl;
+        drv.setRegister(&PORTA, 8);
+        drv.delay_ms(100);
+        std::cout << "Schreibe Zahl 3" << std::endl;
+        drv.setRegister(&PORTA, 13);
+        drv.delay_ms(100);
     }
 }
 
 //TODO - Clock
-//Clock Sender gibt abwechslend 0 und 1 an Leitung vor - Arduino liest an einer Clockleitung mit doppeler Geschw. 
+//Clock Sender gibt abwechslend 0 und 1 an Leitung vor - Arduino liest an einer
+//Clockleitung mit doppeler Geschw. 
